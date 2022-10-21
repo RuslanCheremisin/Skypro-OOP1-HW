@@ -5,13 +5,30 @@ public class Main {
 
         Human maxim = new Human("Maxim", 35, "Minsk","бренд-менеджер");
         maxim.greeting();
-        Human anya = new Human("Anya", 29, "Moscow");
+        Human anya = new Human();
+        anya.setName("Anya");
+        anya.setBirthYear(1998);
+        anya.setResidence("Moscow");
+        anya.setJob("тьютор");
         anya.greeting();
-        Human katya = new Human("Katya","продакт-менеджер",28);
+        Human katya = new Human();
+        katya.setName("");
+        katya.setBirthYear(234);
+        katya.setResidence("Vladivostok");
+        katya.setJob(null);
         katya.greeting();
-        Human artyom = new Human( 27, "Moscow", "директор по развитию бизнеса");
+        Human artyom = new Human();
+        artyom.setName("Artyom");
+        artyom.setBirthYear(1997);
+        artyom.setResidence("Khabarovsk");
+        artyom.setJob(null);
         artyom.greeting();
-
+        Human vladimir = new Human();
+        vladimir.setName("Vladimir");
+        vladimir.setBirthYear(1995);
+        vladimir.setResidence("Kazan");
+        vladimir.setJob("nowhere");
+        vladimir.greeting();
         System.out.println("+++++++++++++++++++++++++");
 
 //        Car ladaGranta = new Car("Lada", "Granta", 1.7, "yellow", 2015, "Russia");
@@ -30,6 +47,30 @@ public class Main {
         hyundaiAvante.giveFullInfo();
 //
         System.out.println("+++++++++++++++++++++++++");
+
+        Flower rosa = new Flower("Rose", "Netherlands", 35.59, 0);
+        rosa.getFullInfo();
+        Flower goldenDaisy = new Flower("Golden-daisy", null, 15.00, 5);
+        goldenDaisy.getFullInfo();
+
+        Flower peony = new Flower();
+        peony.setFlowerColor("Peony");
+        peony.setCost(69.90);
+        peony.setCountry("UK");
+        peony.setLifeSpan(1);
+
+        Flower gypsophila = new Flower("Gypsophila", "Turkey", 19.50, 10);
+        Bouquet bouquet = new Bouquet();
+        bouquet.addFlower(rosa);
+        bouquet.addFlower(rosa);
+        bouquet.addFlower(rosa);
+        bouquet.addFlower(goldenDaisy);
+        bouquet.addFlower(goldenDaisy);
+        bouquet.addFlower(goldenDaisy);
+        bouquet.addFlower(goldenDaisy);
+        bouquet.addFlower(gypsophila);
+
+        bouquet.getBouquetInfo();
 
 
 
