@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.function.DoubleToIntFunction;
 
 public class Bouquet {
     private double sum = 0;
@@ -29,7 +28,6 @@ public class Bouquet {
                     minLifeSpan = flowerBouquet[i].getLifeSpan();
                 }
             }
-
         }
         System.out.println("Срок стояния букета:"+minLifeSpan);
         System.out.println("Стоимость букета:"+sum);
