@@ -38,16 +38,19 @@ public class Main {
                 "Lada",
                 "Granta",
                 1.7,
-                "yellow",
+                null,
                 2015,
                 "Russia");
         ladaGranta.setNumberPlate("a123bc25");
         ladaGranta.changeTyres();
-        ladaGranta.setBodyType("Sedan");
+        ladaGranta.setBodyType(null);
         ladaGranta.setNumberOfSeats(5);
         ladaGranta.setGearBox("Manual");
-        Key key = new Key("Keyless ON", "remote launch ON");
+        Key key = new Key("Keyless ON", null);
         ladaGranta.setKey(key);
+        Car.Insurance insurance = new Car.Insurance(2022, "122389090", 123);
+        ladaGranta.setInsurance(insurance);
+
 //        System.out.println(ladaGranta.getKey().getKeylessAccess());
         ladaGranta.giveFullInfo();
 

@@ -1,5 +1,6 @@
 package transport;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,25 +33,86 @@ public class Car {
     }
 
     public Car(String brand, String model, double engineDisplacement, String colour, int productionYear, String originCountry) {
-        if (brand != null || !brand.isBlank() || !brand.isEmpty()) {
-            this.brand = brand;
+        this.brand = validateValue(brand);
+        this.model = validateValue(model);
+        this.colour = validateValue(colour);
+        this.originCountry = validateValue(originCountry);
+
+        if (engineDisplacement < 0) {
+            System.out.println("Incorrect entry");
+        } else {
+            this.engineDisplacement = engineDisplacement;
         }
-        if (model != null || !model.isBlank() || !model.isEmpty()) {
-            this.model = model;
-        }
-        if (colour != null || !colour.isBlank() || !colour.isEmpty()) {
-            this.colour = colour;
-        }
-        this.engineDisplacement = engineDisplacement;
         if (productionYear < 1886) {
             this.productionYear = 2000;
         } else {
             this.productionYear = productionYear;
         }
-        if (originCountry != null || !originCountry.isBlank() || !originCountry.isEmpty()) {
-            this.originCountry = originCountry;
+
+
+    }
+
+    public static class Insurance {
+        private int validityYear;
+        private String insuranceNumber;
+        private int insurancePrice;
+
+        public Insurance(int validityYear, String insuranceNumber, int insurancePrice) {
+
+            if (validityYear >= LocalDate.now().getYear()) {
+                this.validityYear = validityYear;
+            }
+
+
+            if (insuranceNumber!=null) {
+                if (insuranceNumber.length() != 9) {
+                    this.insuranceNumber = "Incorrect entry";
+                }else {
+                    this.insuranceNumber = validateValue(insuranceNumber);
+                }
+            } else{
+                this.insuranceNumber = "Empty entry";
+            }
+
+            if (insurancePrice > 0) {
+                this.insurancePrice = insurancePrice;
+            }
+
         }
 
+        public int getValidityYear() {
+            return validityYear;
+        }
+
+        public void setValidityYear(int validityYear) {
+            this.validityYear = validityYear;
+        }
+
+        public String getInsuranceNumber() {
+            return insuranceNumber;
+        }
+
+        public void setInsuranceNumber(String insuranceNumber) {
+            this.insuranceNumber = validateValue(insuranceNumber);
+        }
+
+        public int getInsurancePrice() {
+            return insurancePrice;
+        }
+
+        public void setInsurancePrice(int insurancePrice) {
+            this.insurancePrice = insurancePrice;
+        }
+    }
+
+    private Insurance insurance;
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
     }
 
     public static class Key {
@@ -67,16 +129,16 @@ public class Car {
         private String remoteLaunch;
 
         public Key(String keylessAccess, String remoteLaunch) {
-            this.setKeylessAccess(keylessAccess);
-            this.setRemoteLaunch(remoteLaunch);
+            this.keylessAccess = validateValue(keylessAccess);
+            this.remoteLaunch = validateValue(remoteLaunch);
         }
 
         public void setKeylessAccess(String keylessAccess) {
-            this.keylessAccess = keylessAccess;
+            this.keylessAccess = validateValue(keylessAccess);
         }
 
         public void setRemoteLaunch(String remoteLaunch) {
-            this.remoteLaunch = remoteLaunch;
+            this.remoteLaunch = validateValue(remoteLaunch);
         }
     }
 
@@ -95,9 +157,7 @@ public class Car {
     }
 
     public void setGearBox(String gearBox) {
-        if (gearBox != null || !gearBox.isEmpty() || !gearBox.isBlank()) {
-            this.gearBox = gearBox;
-        }
+        this.gearBox = validateValue(gearBox);
     }
 
     public String getBodyType() {
@@ -105,9 +165,7 @@ public class Car {
     }
 
     public void setBodyType(String bodyType) {
-        if (bodyType != null || !bodyType.isEmpty() || !bodyType.isBlank()) {
-            this.bodyType = bodyType;
-        }
+        this.bodyType = validateValue(bodyType);
     }
 
     public String getNumberPlate() {
@@ -170,14 +228,36 @@ public class Car {
         System.out.println("++++++++++++++++++++++++++");
     }
 
+    public static String validateValue(String value) {
+        if (value != null && !value.isEmpty() && !value.isBlank()) {
+            return value;
+        } else {
+            return "Incorrect entry";
+        }
+    }
+
     public void giveFullInfo() {
         System.out.println(getColour() + " " + getBrand() + " " + getModel() + " made in " + getOriginCountry() + " in " + getProductionYear() + ". Engine displacement:" + getEngineDisplacement());
         System.out.println("Registration number: " + numberPlate);
-        System.out.println("Body type:"+getBodyType());
+        System.out.println("Body type:" + getBodyType());
         System.out.println(tyres + " are installed");
         System.out.println(getGearBox() + " gearbox");
         System.out.println(getNumberOfSeats() + " seats");
-        System.out.println(key.getKeylessAccess()+", "+key.getRemoteLaunch());
+        System.out.println(key.getKeylessAccess() + ", " + key.getRemoteLaunch());
+        System.out.println("Insurance info: ");
+        System.out.println("Insurance No: "+insurance.getInsuranceNumber());
+        if (insurance.validityYear == 0) {
+            System.out.println("Insurance expired");
+        } else {
+            System.out.println("Insurance valid till: "+insurance.getValidityYear());
+        }
+        if (insurance.getInsurancePrice() == 0) {
+            System.out.println("No data on price");
+        } else {
+            System.out.println("Insurance price: "+insurance.getInsurancePrice());
+        }
+        System.out.println();
+
     }
 
 
