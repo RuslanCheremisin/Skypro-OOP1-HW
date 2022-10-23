@@ -17,15 +17,85 @@ public class Car {
     private String numberPlate;
 
     private int numberOfSeats;
-    private String [] tyreTypes = {"Winter tyres", "Summer tyres"};
+    private String[] tyreTypes = {"Winter tyres", "Summer tyres"};
     private String tyres = tyreTypes[0];
+
+    public Car() {
+        this.brand = "default";
+        this.model = "default";
+        this.engineDisplacement = 1.5;
+        this.colour = "white";
+        if (productionYear < 1886) {
+            this.productionYear = 2000;
+        }
+        this.originCountry = "default";
+    }
+
+    public Car(String brand, String model, double engineDisplacement, String colour, int productionYear, String originCountry) {
+        if (brand != null || !brand.isBlank() || !brand.isEmpty()) {
+            this.brand = brand;
+        }
+        if (model != null || !model.isBlank() || !model.isEmpty()) {
+            this.model = model;
+        }
+        if (colour != null || !colour.isBlank() || !colour.isEmpty()) {
+            this.colour = colour;
+        }
+        this.engineDisplacement = engineDisplacement;
+        if (productionYear < 1886) {
+            this.productionYear = 2000;
+        } else {
+            this.productionYear = productionYear;
+        }
+        if (originCountry != null || !originCountry.isBlank() || !originCountry.isEmpty()) {
+            this.originCountry = originCountry;
+        }
+
+    }
+
+    public static class Key {
+        public String getKeylessAccess() {
+            return keylessAccess;
+        }
+
+        public String getRemoteLaunch() {
+            return remoteLaunch;
+        }
+
+        private String keylessAccess;
+
+        private String remoteLaunch;
+
+        public Key(String keylessAccess, String remoteLaunch) {
+            this.setKeylessAccess(keylessAccess);
+            this.setRemoteLaunch(remoteLaunch);
+        }
+
+        public void setKeylessAccess(String keylessAccess) {
+            this.keylessAccess = keylessAccess;
+        }
+
+        public void setRemoteLaunch(String remoteLaunch) {
+            this.remoteLaunch = remoteLaunch;
+        }
+    }
+
+    private Key key;
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
+    }
 
     public String getGearBox() {
         return gearBox;
     }
 
     public void setGearBox(String gearBox) {
-        if (gearBox!=null || !gearBox.isEmpty() || !gearBox.isBlank()) {
+        if (gearBox != null || !gearBox.isEmpty() || !gearBox.isBlank()) {
             this.gearBox = gearBox;
         }
     }
@@ -35,7 +105,7 @@ public class Car {
     }
 
     public void setBodyType(String bodyType) {
-        if (bodyType!=null || !bodyType.isEmpty() || !bodyType.isBlank()) {
+        if (bodyType != null || !bodyType.isEmpty() || !bodyType.isBlank()) {
             this.bodyType = bodyType;
         }
     }
@@ -64,40 +134,6 @@ public class Car {
         this.numberOfSeats = numberOfSeats;
     }
 
-
-
-    public Car() {
-        this.brand = "default";
-        this.model = "default";
-        this.engineDisplacement = 1.5;
-        this.colour = "white";
-        if(productionYear<1886){
-            this.productionYear = 2000;
-        }
-        this.originCountry = "default";
-    }
-    public Car(String brand, String model, double engineDisplacement, String colour, int productionYear, String originCountry) {
-        if (brand!=null || !brand.isBlank() || !brand.isEmpty()) {
-            this.brand = brand;
-        }
-        if (model!=null || !model.isBlank() || !model.isEmpty()) {
-            this.model = model;
-        }
-        if (colour!=null || !colour.isBlank() || !colour.isEmpty()) {
-            this.colour = colour;
-        }
-        this.engineDisplacement = engineDisplacement;
-        if (productionYear < 1886) {
-            this.productionYear = 2000;
-        } else {
-            this.productionYear = productionYear;
-        }
-        if (originCountry!=null || !originCountry.isBlank() || !originCountry.isEmpty()) {
-            this.originCountry = originCountry;
-        }
-
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -105,6 +141,7 @@ public class Car {
     public String getModel() {
         return model;
     }
+
     public double getEngineDisplacement() {
         return engineDisplacement;
     }
@@ -125,18 +162,23 @@ public class Car {
 
         if (tyres == tyreTypes[0]) {
             tyres = tyreTypes[1];
-            System.out.println(tyreTypes[1]+" installed");
+            System.out.println(tyreTypes[1] + " installed");
         } else {
             tyres = tyreTypes[0];
-            System.out.println(tyreTypes[0]+" installed");
+            System.out.println(tyreTypes[0] + " installed");
         }
+        System.out.println("++++++++++++++++++++++++++");
     }
 
-    public void giveFullInfo(){
-        System.out.println(getColour()+" "+getBrand()+" "+getModel()+" made in "+getOriginCountry()+" in "+getProductionYear()+". Engine displacement:"+getEngineDisplacement());
-        System.out.println("Registration number: "+numberPlate);
-        System.out.println(tyres+" are installed");
-        System.out.println(getGearBox()+" gearbox");
-        System.out.println(getNumberOfSeats()+" seats");
+    public void giveFullInfo() {
+        System.out.println(getColour() + " " + getBrand() + " " + getModel() + " made in " + getOriginCountry() + " in " + getProductionYear() + ". Engine displacement:" + getEngineDisplacement());
+        System.out.println("Registration number: " + numberPlate);
+        System.out.println("Body type:"+getBodyType());
+        System.out.println(tyres + " are installed");
+        System.out.println(getGearBox() + " gearbox");
+        System.out.println(getNumberOfSeats() + " seats");
+        System.out.println(key.getKeylessAccess()+", "+key.getRemoteLaunch());
     }
+
+
 }

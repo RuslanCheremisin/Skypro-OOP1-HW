@@ -1,4 +1,5 @@
 import transport.Car;
+import transport.Car.Key;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,6 +46,9 @@ public class Main {
         ladaGranta.setBodyType("Sedan");
         ladaGranta.setNumberOfSeats(5);
         ladaGranta.setGearBox("Manual");
+        Key key = new Key("Keyless ON", "remote launch ON");
+        ladaGranta.setKey(key);
+//        System.out.println(ladaGranta.getKey().getKeylessAccess());
         ladaGranta.giveFullInfo();
 
         Car audiA8 = new Car(
